@@ -1,0 +1,1 @@
+https://github.com/wkentaro/labelme/releases/tag/v4.5.9
