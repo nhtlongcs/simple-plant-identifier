@@ -128,5 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 *.exe
-data/*
-!*.py
+data/*/*
+!*.md
