@@ -1,3 +1,4 @@
+import argparse
 import cv2
 import pandas as pd
 import numpy as np
@@ -120,10 +121,35 @@ class Colors:
 colors = Colors()  # create instance for 'from utils.plots import colors'
 
 
+def parseArguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--image_path",
+        default="data/raw/images/00000.jpg",
+        type=str,
+        help="the path of the yolo label file",
+    )
+    parser.add_argument(
+        "--annotation_path",
+        default="data/raw/yolo-labels/00000.txt",
+        type=str,
+        help="the path of the image file",
+    )
+    parser.add_argument(
+        "--save_path",
+        default="./demo.jpg",
+        type=str,
+        help="the path of the save image file",
+    )
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
+    args = parseArguments()
     viz_one_img(
-        annotation_path="data/yolo/labels/00000.txt",
-        im_path="data/raw/images/00000.jpg",
+        annotation_path=args.annotation_path,
+        im_path=args.image_path,
         gt_format=True,
+        save_path=args.save_path,
     )
 

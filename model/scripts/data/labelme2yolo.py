@@ -7,6 +7,23 @@ import shutil
 from tqdm import tqdm
 
 
+def parseArguments(argv):
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--json_dir",
+        default="./data/raw/labels",
+        type=str,
+        help="the path of the json folder",
+    )
+    parser.add_argument(
+        "--yolo_dir",
+        default="./data/yolo/labels",
+        type=str,
+        help="the path of the json folder",
+    )
+    return parser.parse_args(argv)
+
+
 def main(args):
     id_list = make_id_list(args.json_dir)
     for json_file in tqdm(os.listdir(args.json_dir)):
@@ -140,23 +157,6 @@ def get_label_id(path, id_list):
         for ind in range(len(atu)):
             alist = list(atu[ind])
             f.write(alist[0] + "\n")
-
-
-def parseArguments(argv):
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--json_dir",
-        default="./data/raw/labels",
-        type=str,
-        help="the path of the json folder",
-    )
-    parser.add_argument(
-        "--yolo_dir",
-        default="./data/yolo/labels",
-        type=str,
-        help="the path of the json folder",
-    )
-    return parser.parse_args(argv)
 
 
 if __name__ == "__main__":
