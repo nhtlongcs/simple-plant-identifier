@@ -1,6 +1,4 @@
 [submodule "model/module"]
 	path = model/module
 	url = https://github.com/ultralytics/yolov5
-[submodule "app/web-app"]
-	path = model/module
-	url = https://github.com/nhtlongcs/yolov5-flask
+	
