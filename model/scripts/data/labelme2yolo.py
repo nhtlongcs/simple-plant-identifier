@@ -1,4 +1,3 @@
-%%writefile scripts/data/labelme2yolo.py
 import json
 import argparse
 import sys
@@ -133,10 +132,8 @@ def save_yolo_file(id_name, x, y, w, h, path, json_path, yolo_path):
         dir_path, os.path.basename(json_path).split(".")[0] + ".txt"
     )
 
-    with open(txt_path, "w") as f:
+    with open(txt_path, "a+") as f:
         f.write(id_name + " " + x + " " + y + " " + w + " " + h + "\n")
-        f.write(json_path +"\n")
-        f.write(yolo_path +"\n")
 
     return 0
 
