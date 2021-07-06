@@ -127,8 +127,15 @@ def train(
     # Save run settings
     with open(save_dir / "hyp.yaml", "w") as f:
         yaml.safe_dump(hyp, f, sort_keys=False)
-    # with open(save_dir / "opt.yaml", "w") as f:
-    #     yaml.safe_dump(vars(opt), f, sort_keys=False)
+    with open(save_dir / "opt.yaml", "w") as f:
+        
+
+    # Save run settings
+    with open(save_dir / "hyp.yaml", "w") as f:
+        yaml.safe_dump(hyp, f, sort_keys=False)
+    with open(save_dir / "opt.yaml", "w") as f:
+        opt.save_dir = str(opt.save_dir)
+        yaml.safe_dump(vars(opt), f, sort_keys=False)
 
     # Configure
     plots = not evolve  # create plots
