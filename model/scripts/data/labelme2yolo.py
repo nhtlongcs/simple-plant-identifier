@@ -1,3 +1,4 @@
+%%writefile scripts/data/labelme2yolo.py
 import json
 import argparse
 import sys
@@ -34,7 +35,6 @@ def main(args):
             for i in range(len(data["shapes"])):
                 ports_location = data["shapes"][i]["points"]
                 ports_list.append(ports_location)
-
             for i in range(len(data["shapes"])):
                 x_lists = []
                 y_lists = []
@@ -62,7 +62,7 @@ def main(args):
                     round(float(height / u), 6),
                 )
 
-                label_id = str(id_list[data["shapes"][i]["label"]])
+                label_id = str(data["shapes"][i]["label"])
 
                 save_yolo_file(
                     label_id,
@@ -133,8 +133,10 @@ def save_yolo_file(id_name, x, y, w, h, path, json_path, yolo_path):
         dir_path, os.path.basename(json_path).split(".")[0] + ".txt"
     )
 
-    with open(txt_path, "a+") as f:
+    with open(txt_path, "w") as f:
         f.write(id_name + " " + x + " " + y + " " + w + " " + h + "\n")
+        f.write(json_path +"\n")
+        f.write(yolo_path +"\n")
 
     return 0
 
@@ -161,4 +163,3 @@ def get_label_id(path, id_list):
 
 if __name__ == "__main__":
     main(parseArguments(sys.argv[1:]))
-
