@@ -128,12 +128,6 @@ def train(
     with open(save_dir / "hyp.yaml", "w") as f:
         yaml.safe_dump(hyp, f, sort_keys=False)
     with open(save_dir / "opt.yaml", "w") as f:
-        
-
-    # Save run settings
-    with open(save_dir / "hyp.yaml", "w") as f:
-        yaml.safe_dump(hyp, f, sort_keys=False)
-    with open(save_dir / "opt.yaml", "w") as f:
         opt.save_dir = str(opt.save_dir)
         yaml.safe_dump(vars(opt), f, sort_keys=False)
 
@@ -872,7 +866,7 @@ def main(opt):
             opt.save_dir = Path(opt.project)
         opt.save_dir = increment_path(
             Path(opt.save_dir) / opt.name, exist_ok=opt.exist_ok | opt.evolve
-        )  # increment run
+        )  # increment run# increment run
     # DDP mode
     device = select_device(opt.device, batch_size=opt.batch_size)
     if LOCAL_RANK != -1:
