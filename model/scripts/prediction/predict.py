@@ -20,15 +20,16 @@ def json_predict(model, path: str):
 
 if __name__ == "__main__":
 
+    parser = argparse.ArgumentParser(description="export json script")
+    parser.add_argument("--inp-folder", default="./data/samples/input")
+    parser.add_argument("--model-path", default="./yolov5s.pt")
+    parser.add_argument("--out-folder", default="./data/samples/output")
+    args = parser.parse_args()
+
     model = torch.hub.load(
         "./module", "custom", path="./yolov5s.pt", source="local",
     ).autoshape()  # force_reload = recache latest code
     model.eval()
-
-    parser = argparse.ArgumentParser(description="export json script")
-    parser.add_argument("--inp-folder", default="./data/samples/input")
-    parser.add_argument("--out-folder", default="./data/samples/output")
-    args = parser.parse_args()
 
     img_ls = glob(os.path.join(args.inp_folder, "*"))
     save_dir = Path(args.out_folder)
