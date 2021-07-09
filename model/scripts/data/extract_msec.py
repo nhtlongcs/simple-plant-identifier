@@ -32,12 +32,13 @@ def extractImages(pathIn, pathOut):
 
 
 if __name__ == "__main__":
-    data_dir = Path("./raw_videos/")
-    save_dir = Path("./images/")
+    args = a.parse_args()
+    data_dir = Path(args.pathIn)
+    save_dir = Path(args.pathOut)
+    save_dir.mkdir(parents=True, exist_ok=True)
     data_ls = data_dir.glob("*.mp4")
     data = []
     for video_path in data_ls:
         video_name = video_path.stem
         image_dir = save_dir  # / video_name
-        image_dir.mkdir(parents=True, exist_ok=True)
         extractImages(pathIn=video_path, pathOut=image_dir)
